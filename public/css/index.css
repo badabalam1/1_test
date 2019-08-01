@@ -1,0 +1,28 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+a {
+    font-size: 20px;
+    text-decoration: none;
+}
+li {
+    float: left;
+}
+ul {
+    list-style: none;
+    margin-right: 0px;
+    padding: 0px;
+}
+.navbar-right > li {
+    margin: 0px 15px;
+}
+.postList {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+}
+.posts {
+    width: 85%;
+}
+  
