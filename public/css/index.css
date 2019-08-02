@@ -14,15 +14,26 @@ ul {
     margin-right: 0px;
     padding: 0px;
 }
+.navbar-right {
+    margin-right: 7%;
+}
 .navbar-right > li {
-    margin: 0px 15px;
+    margin: 0px 10px;
+}
+.mr-auto > li {
+    margin-right: 6px;
 }
 .postList {
-    margin-top: 70px;
+    margin-top: 72px;
     display: flex;
     justify-content: center;
 }
 .posts {
     width: 85%;
 }
-  
+.navbar-brand {
+    margin-left: 7%;
+}
+.first-nav {
+    margin-left: 10px;
+}
