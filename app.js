@@ -10,8 +10,10 @@ db.mongoConnect();
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const passport = require('./lib/passport');
+const methodOverride = require('method-override');
 
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(methodOverride('_method'));
 app.use(express.static('public'));
 app.use(session({
     secret: 'JDSF@Y*@T93QEI5WDS3VX3C',

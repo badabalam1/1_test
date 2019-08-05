@@ -3,6 +3,7 @@
         <thead>
             <tr>
                 <th class="title">Title</th>
+                <th class="author">Author</th>
                 <th class="date">Date</th>
             </tr>
         </thead>
@@ -17,8 +18,11 @@
             <td class="title">
                 <a href="/board/<%= post._id %>"><div><%= post.title %></div></a>
             </td>
+            <td class="author">
+                <%= post.author %>
+            </td>
             <td class="date">
-                <%= post.createAt %>
+                <%= post.createAt.toString().replace('G', ')').substr(0, 24) %>
             </td>
             </tr>
             <% }) %>

@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Posting</title>
+</head>
+<body>
+    <h1>Post Update</h1>
+    <% let updateLink = `/board/update/${ post._id }`; %>
+    <form action="<%= updateLink %>?_method=put" method="POST">
+        <p><input type="text" name="title" value="<%= post.title %>"></p>
+        <p><textarea name="contents" cols="30" rows="10"><%= post.contents %></textarea></p>
+        <p><input type="submit" value="작성완료"></p>
+    </form>
+</body>
+</html>

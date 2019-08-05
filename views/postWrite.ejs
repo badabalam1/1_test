@@ -6,9 +6,9 @@
     <title>Posting</title>
 </head>
 <body>
-    <% if (!isAuthenticated) { %>
+   <% if (!isAuthenticated) { %>
     <script>
-        alert('로그인부터 하세요 씨발\n메인으로 보내줄게');
+        alert('로그인이 필요한 서비스입니다.');
         window.location = '/';
     </script>
     <% } else { %>

@@ -87,5 +87,6 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
-# git rm --cached fucktest.html
-# git rm --cached fucktest.js
+views/Login_v2
+views/login__2.ejs
+views/login-bs.ejs

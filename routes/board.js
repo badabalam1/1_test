@@ -15,27 +15,47 @@ exports.write_process = (req, res) => {
     console.log(post);
     post.save()
         .then((result) => {
-            //res.render('afterComplate', { title: "글 작성 완료" });
             res.redirect(`/board/${result._id}`);
         })
         .catch((err) => {
-            console.error(err);
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.end(`
-            <head><meta charset="utf-8"</head>
-            <body><h2>글 작성 실패</h2></body>
-            <a href="/">Main</a>
-            `);
-            next(err);
+            res.json(err);
         });
 };
 
-exports.show = (req, res) => {
+exports.showPost = (req, res) => {
     console.log('✓ fucking show post');
     Post.findOne({ _id: req.params.postID })
         .then((result) => {
-            console.log(result);
-            res.render('showPost', { post: result, data: 'a' });
+            res.render('showPost', { post: result });
+        }).catch((err) => {
+            res.json(err);
+        });
+};
+
+exports.editPost = (req, res) => {
+    console.log('✓ UPDATE POST');
+    Post.findOne({ _id: req.params.postID })
+    .then((result) => {
+        res.render('editPost', { post: result });
+    }).catch((err) => {
+        res.json(err);
+    });
+};
+
+exports.updatePost = (req, res) => {
+    req.body.createAt = Date.now(); // 2
+    Post.findOneAndUpdate({ _id: req.params.postID }, req.body)
+        .then((updateResult) => {
+            res.redirect(`/board/${req.params.postID}`);
+        }).catch((err) => {
+            res.json(err);
+        });
+};
+
+exports.deletePost = (req, res) => {
+    Post.deleteOne({ _id: req.params.postID })
+        .then((result) => {
+            res.redirect('/');
         }).catch((err) => {
             res.json(err);
         });
