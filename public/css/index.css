@@ -1,6 +1,7 @@
 body {
     margin: 0px;
     padding: 0px;
+    font-family: 'Roboto', sans-serif;
 }
 a {
     font-size: 20px;
@@ -24,7 +25,7 @@ ul {
     margin-right: 6px;
 }
 .postList {
-    margin-top: 72px;
+    margin-top: 82px;
     display: flex;
     justify-content: center;
 }

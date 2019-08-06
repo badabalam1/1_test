@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const lib = require('../lib/lib');
-let url = `mongodb://${lib.mongo_id}:${lib.mongo_pw}@localhost:27017/admin`;
+const { mongo } = require('../lib/lib');
+let url = `mongodb://${mongo.mongo_id}:${mongo.mongo_pw}@localhost:27017/admin`;
 
 exports.mongoConnect = () => {
     const connect = () => {

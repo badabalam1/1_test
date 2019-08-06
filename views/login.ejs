@@ -3,10 +3,9 @@
 <head>
 	<title>Login V2</title>
 	<% include ./ejs/headerSetting.ejs %>
-	<script src="/Login_v2/js/main.js"></script>
-	<link rel="stylesheet" type="text/css" href="/Login_v2/css/util.css">
-	<link rel="stylesheet" type="text/css" href="/Login_v2/css/main.css">
-<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../css/Login_util.css">
+	<link rel="stylesheet" type="text/css" href="../css/Login_main.css">
+	<link rel="stylesheet" type="text/css" href="../css/material-design-iconic-font.min.css">
 </head>
 <body>
 	<% include ./ejs/navbar.ejs %>
@@ -56,8 +55,10 @@
 			</div>
 		</div>
 	</div>
-	
-
 	<div id="dropDownSelect1"></div>
+
+	<% include ./ejs/scripts.ejs %>
+	<script src="../js/Login_main.js"></script>
+
 </body>
 </html>

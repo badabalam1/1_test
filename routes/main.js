@@ -10,7 +10,7 @@ exports.main = (req, res) => {
         });
     let pageID = req.query.page === undefined || req.query.page < 1 ? 1 : req.query.page
     Post.find({})
-        .sort('createAt')
+        .sort('-createAt')
         .skip( (pageID - 1 ) * 10)
         .limit(pageID * 10)
         .then((result) => {

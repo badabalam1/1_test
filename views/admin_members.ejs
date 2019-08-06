@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <% include ./ejs/headerSetting.ejs %>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/members.css">
+</head>
+<body>
+    <% include ./ejs/navbar.ejs %>
+    <div class="postList">
+        <table class="table table-striped posts">
+            <thead>
+                <tr>
+                    <th class="MemberName">Member Name</th>
+                    <th class="id">ID</th>
+                    <th class="email">Email</th>
+                    <th class="edit">Edit</th>
+                    <th class="delete">Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if(users == null || users.length == 0){ %>
+                <tr>
+                    <td class="noData" colspan=100> There is no data to show :( </td>
+                </tr>
+                    <% } %>
+                    <% users.forEach(function(user) { %>
+                <tr>
+                <td class="MemberName">
+                    <a><div class="username"><%= user.name %></div><a>
+                </td>
+                <td class="id">
+                    <%= user.id %>
+                </td>
+                <td class="email">
+                    <%= user.email %>
+                </td>
+                <% let modifyLink = `/user/modifyUser/${ user._id }`; %>
+                <% let deleteLink = `/user/delete/${ user._id }?_method=delete`; %>
+                <td class="modify_btn">
+                    <a class="btn btn-primary" href="<%= modifyLink %>" role="button">수정</a>
+                </td>
+                <td class="delete_btn">
+                    <form class="btn form_btn" action="<%= deleteLink %>" method="post">
+                        <a class="btn btn-primary" href="#" onclick="confirm('해당 유저를 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
+                    </form> 
+                </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <% include ./ejs/scripts.ejs %>   
+</body>
+</html>

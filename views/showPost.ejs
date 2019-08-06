@@ -1,6 +1,7 @@
 <html>
     <head>
         <% include ./ejs/headerSetting.ejs %>
+        <link rel="stylesheet" href="../css/showPosts.css">
     </head>
     <body>
     <% if (!isAuthenticated) { %>
@@ -36,13 +37,16 @@
                 <hr>
                 <% let updateLink = `/board/edit/${ post._id }`; %>
                 <% let deleteLink = `/board/delete/${ post._id }?_method=delete`; %>
-                <a class="btn btn-primary" href="<%= updateLink %>" role="button">수정</a>
-                <form class="btn form_btn" action="<%= deleteLink %>" method="post">
-                    <a class="btn btn-primary" href="#" onclick="confirm('정말로 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
-                </form> 
+                <% if (currentUser.id === 'admin' || currentUser.name === post.author) { %>
+                    <a class="btn btn-primary" href="<%= updateLink %>" role="button">수정</a>
+                    <form class="btn form_btn" action="<%= deleteLink %>" method="post">
+                        <a class="btn btn-primary" href="#" onclick="confirm('정말로 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
+                    </form> 
+                <% } %>
             </div>
         </div>
     </div>
     <% } %>
+    <% include ./ejs/scripts.ejs %>
     </body>
 </html>

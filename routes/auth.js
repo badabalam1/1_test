@@ -1,5 +1,5 @@
 const User = require('../schema/user');
-const lib = require('../lib/lib');
+const { encryption } = require('../lib/lib');
 const passport = require('../lib/passport');
 
 exports.signup = (req, res) => {
@@ -8,8 +8,8 @@ exports.signup = (req, res) => {
 
 exports.signup_process = (req, res) => {
     let body = req.body;
-    const _salt = lib.createSalt();
-    const afterHash = lib.hashPassword(body.password, _salt);
+    const _salt = encryption.createSalt();
+    const afterHash = encryption.hashPassword(body.password, _salt);
     const user = new User({
         name: body.name,
         id: body.id,
@@ -19,17 +19,11 @@ exports.signup_process = (req, res) => {
     });
     user.save()
         .then((result) => {
-            res.render('afterComplate', { title: "회원가입 완료" });
+            // res.render('afterComplate', { title: "회원가입 완료" });
+            res.redirect('/');
         })
         .catch((err) => {
-            console.error(err);
-            res.writeHead(200, {'Content-Type': 'text/html'});
-            res.end(`
-            <head><meta charset="utf-8"</head>
-            <body><h2>회원가입 실패</h2></body>
-            <a href="/">메인으로 돌아가기</a>
-            `);
-            next(err);
+            res.json(err);
         });
 };
 
