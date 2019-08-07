@@ -2,6 +2,8 @@
     <head>
         <% include ./ejs/headerSetting.ejs %>
         <link rel="stylesheet" href="../css/showPosts.css">
+        <link rel="stylesheet" href="../css/post_postList.css">
+        <link rel="stylesheet" href="../css/pagination.css">
     </head>
     <body>
     <% if (!isAuthenticated) { %>
@@ -43,6 +45,11 @@
                         <a class="btn btn-primary" href="#" onclick="confirm('정말로 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
                     </form> 
                 <% } %>
+                <br><br>
+                <hr>
+                <h1 class="mt-5">Posts</h1>
+                <% include ./ejs/postList.ejs %>
+                <% include ./ejs/Pagination.ejs %>
             </div>
         </div>
     </div>

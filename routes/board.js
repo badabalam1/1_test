@@ -23,10 +23,29 @@ exports.write_process = (req, res) => {
 };
 
 exports.showPost = (req, res) => {
-    console.log('✓ fucking show post');
+    let _postCount;
+    let _pageLength;
+    let _posts;
+    Post.find({})
+        .then((result) => {
+            _postCount = result.length;
+        }).catch((err) => {
+            res.json(err);
+        });
+    let pageID = req.query.page === undefined || req.query.page < 1 ? 1 : req.query.page
+    Post.find({})
+        .sort('-createAt')
+        .skip( (pageID - 1 ) * 10)
+        .limit(pageID * 10)
+        .then((result) => {
+            _posts = result;
+            _pageLength = (((Math.ceil(_postCount / 10)) * 10 ) / 10) ;
+        }).catch((err) => {
+            res.json(err);
+        });
     Post.findOne({ _id: req.params.postID })
         .then((result) => {
-            res.render('showPost', { post: result });
+            res.render('showPost', { post: result, posts: _posts, pageLength: _pageLength });
         }).catch((err) => {
             res.json(err);
         });

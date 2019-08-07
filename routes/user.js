@@ -10,7 +10,7 @@ exports.members = (req, res) => {
 };
 
 exports.information = (req, res) => {
-
+    res.render('showInformation', { user: req.user });
 };
 
 exports.modifyUser = (req, res) => {
