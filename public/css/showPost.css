@@ -9,6 +9,25 @@
 .mt-4 {
     margin-bottom: 1.7rem;
 }
+.comment-author {
+    font-weight: 550;
+    font-family: Poppins-Regular !important;
+}
+.comment-title {
+    margin-bottom: 1.2rem !important;
+}
+.comment-buttons {
+    float: right;
+}
+.comment-edit {
+    margin-right: 0.5rem;
+}
+.comment-box {
+    margin-bottom: 1.1rem !important;
+}
+.comment-createdAt {
+    font-weight: 230;
+}
 @media (min-width: 1200px) {
     .container {
         max-width: 92%;

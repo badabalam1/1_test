@@ -2,3 +2,6 @@
     font-size: 1.33rem;
     text-decoration: none;
 }
+.comment-count {
+    font-size: 1.2rem !important;
+}

@@ -39,9 +39,9 @@
                 <% let updateLink = `/board/edit/${ post._id }`; %>
                 <% let deleteLink = `/board/delete/${ post._id }?_method=delete`; %>
                 <% if (currentUser.id === 'admin' || currentUser.name === post.author) { %>
-                    <a class="btn btn-primary" href="<%= updateLink %>" role="button">수정</a>
+                    <a class="btn btn-primary" href="<%= updateLink %>" role="button">Edit</a>
                     <form class="btn form_btn" action="<%= deleteLink %>" method="post">
-                        <a class="btn btn-primary" href="#" onclick="confirm('정말로 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
+                        <a class="btn btn-primary" href="#" onclick="confirm('정말로 삭제하시겠습니까?')?this.parentElement.submit():null;">Delete</a>
                     </form> 
                 <% } %>
                 <br><hr>
@@ -49,22 +49,46 @@
                 <div class="card my-4">
                     <h5 class="card-header">Leave a Comment:</h5>
                     <div class="card-body">
-                        <form>
-                        <div class="form-group">
-                            <textarea name="comment" class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <form action="/board/comment/?postID=<%= post._id %>" method="post">
+                            <div class="form-group">
+                                <textarea name="comment" class="form-control" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
 
-
-
-
-                
-                
-
-
+                <% if (comments !== undefined) { %>
+                    <% comments.forEach((comment) => { %>
+                        <!-- Single Comment -->
+                        <div class="media mb-4 comment-box">
+                            <img class="d-flex mr-3 rounded-circle" src="../images/jongjiwoo.png" alt="">
+                            <div class="media-body">
+                            <h5 class="mt-0">
+                                <div class="comment-title">
+                                    <span class="comment-author"><%= comment.Author %>
+                                        <span class="comment-createdAt">(<%= comment.createdAt.toString().replace('G', ')').substr(0, 24) %>)</span>
+                                    </span>
+                                </div>
+                            </h5>
+                            <span><%= comment.comment %></span>
+                            <%= comment._id %>
+                            <% let commentEditLink = `/board/comment/update/?postID=${ post._id }` %>
+                            <% let commentDeleteLink = `/board/comment/delete?_method=delete/?CommentID=${comment._id}` %>
+                            <span class="comment-buttons">
+                                <form action="<%= commentDeleteLink %>" method="post">
+                                    <a href="#" onclick="confirm('정말로 삭제하시겠습니까?')?this.parentElement.submit():null;">Delete</a>
+                                </form> 
+                            </span>
+                            <span class="comment-buttons comment-edit">
+                                <a href="<%= commentEditLink %>">Edit</a>
+                            </span>
+                            <div class="comment-line"><hr></div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+                <!---->
                 <br>
                 <!-- Post List -->
                 <hr>

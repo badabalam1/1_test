@@ -16,7 +16,9 @@
             <% posts.forEach((post) => { %>
                 <tr>
                 <td class="title">
-                    <a class="postlist-title" href="/board/<%= post._id %>"><div><%= post.title %></div></a>
+                    <a class="postlist-title" href="/board/<%= post._id %>">
+                        <div><%= post.title %>    <span class="comment-count">[<%= post.commentCount %>]</span></div>
+                    </a>
                 </td>
                 <td class="author">
                     <%= post.author %>
