@@ -1,5 +1,7 @@
 const User = require('../schema/user');
 const Post = require('../schema/board');
+const Comment = require('../schema/comment');
+const url = require('url');
 
 exports.write = (req, res) => {
     res.render('postWrite');
@@ -78,4 +80,14 @@ exports.deletePost = (req, res) => {
         }).catch((err) => {
             res.json(err);
         });
+};
+
+exports.writeComment = (req, res) => {
+    let url q = url.parse(adr, true);
+    let body = req.body;
+    const comment = new Comment({
+        Author: req.user.name,
+        comment: body.comment,
+        connectedPost: 
+    });
 };

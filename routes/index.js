@@ -14,6 +14,7 @@ router.get('/auth/logout', auth.logout);
 // only member
 router.get('/board/write', board.write);
 router.post('/board/write', board.write_process);
+router.post('/board/:postID')
 router.get('/board/:postID', board.showPost);
 // only Author
 router.get('/board/edit/:postID', board.editPost);

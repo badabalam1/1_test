@@ -1,23 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand">MY Board</a>
+<link rel="stylesheet" href="../css/navbar.css">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top navbar-main">
+    <a class="navbar-brand" href="/">MY Board</a>
     <div class="collapse navbar-collapse first-nav" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
+            </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">dididididi</a>
-                <a class="dropdown-item" href="#">vivivivivivi</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">derderder</a>
-                </div>
             </li>
             <!-- <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
@@ -30,10 +20,11 @@
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Welcome, <%= currentUser.name%>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/user/members">Members</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="/user/information">My Information</a>
+                        <a class="dropdown-item" href="/auth/logout">Logout</a>
                         </div>
                     </li>
                 <% } else { %>
@@ -41,12 +32,11 @@
                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Welcome, <%= currentUser.name%>
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/user/information">My Information</a>
                         </div>
                     </li>
                 <% } %>
-                <li class="nav-item"><a class="nav-link"href="/auth/logout">Logout</a></li>
                 <li class="nav-item"><a class="nav-link"href="/board/write">Posting</a></li>
             <% } else { %>
                 <li class="nav-item"><a class="nav-link" href="/auth/signup">Sign Up</a></li>

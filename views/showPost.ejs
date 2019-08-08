@@ -1,7 +1,7 @@
 <html>
     <head>
         <% include ./ejs/headerSetting.ejs %>
-        <link rel="stylesheet" href="../css/showPosts.css">
+        <link rel="stylesheet" href="../css/showPost.css">
         <link rel="stylesheet" href="../css/post_postList.css">
         <link rel="stylesheet" href="../css/pagination.css">
     </head>
@@ -35,8 +35,7 @@
                 <!-- Post Content -->
                 <p class="lead">
                     <%= post.contents %>
-                </p>
-                <hr>
+                </p><br>
                 <% let updateLink = `/board/edit/${ post._id }`; %>
                 <% let deleteLink = `/board/delete/${ post._id }?_method=delete`; %>
                 <% if (currentUser.id === 'admin' || currentUser.name === post.author) { %>
@@ -45,7 +44,29 @@
                         <a class="btn btn-primary" href="#" onclick="confirm('정말로 삭제하시겠습니까?')?this.parentElement.submit():null;">삭제</a>
                     </form> 
                 <% } %>
-                <br><br>
+                <br><hr>
+                <!-- comments -->
+                <div class="card my-4">
+                    <h5 class="card-header">Leave a Comment:</h5>
+                    <div class="card-body">
+                        <form>
+                        <div class="form-group">
+                            <textarea name="comment" class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+
+
+
+                
+                
+
+
+                <br>
+                <!-- Post List -->
                 <hr>
                 <h1 class="mt-5">Posts</h1>
                 <% include ./ejs/postList.ejs %>

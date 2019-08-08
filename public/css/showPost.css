@@ -1,10 +1,13 @@
 .col-lg-8 {
     margin-left: 3%;
-    margin-top: 23px;
+    margin-top: 3.8rem;
 }
 .form_btn {
     margin: 0px 0px;
     padding: 0px 5px;
+}
+.mt-4 {
+    margin-bottom: 1.7rem;
 }
 @media (min-width: 1200px) {
     .container {

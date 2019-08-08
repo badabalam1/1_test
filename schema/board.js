@@ -7,6 +7,6 @@ const boardSchema = new Schema({
     contents : { type: String, required: true },
     author : { type: String, required: true },
     createAt: {  type: Date, default: Date.now }
-})
+});
 
 module.exports = mongoose.model('board', boardSchema);

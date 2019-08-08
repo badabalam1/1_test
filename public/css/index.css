@@ -1,28 +1,14 @@
 body {
     margin: 0px;
     padding: 0px;
-    font-family: 'Roboto', sans-serif;
-}
-a {
-    font-size: 20px;
-    text-decoration: none;
-}
-li {
-    float: left;
 }
 ul {
     list-style: none;
     margin-right: 0px;
     padding: 0px;
 }
-.navbar-right {
-    margin-right: 7%;
-}
-.navbar-right > li {
-    margin: 0px 7px;
-}
-.mr-auto > li {
-    margin-right: 6px;
+.nav-link {
+    font-size: 1.17rem;
 }
 .postList {
     margin-top: 82px;
@@ -31,10 +17,5 @@ ul {
 }
 .posts {
     width: 85%;
-}
-.navbar-brand {
-    margin-left: 7%;
-}
-.first-nav {
-    margin-left: 10px;
+    margin-top: 3rem;
 }
