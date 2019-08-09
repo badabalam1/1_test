@@ -9,24 +9,32 @@
 .mt-4 {
     margin-bottom: 1.7rem;
 }
+.mb-4 {
+    margin-bottom: 0.5rem !important;
+}
 .comment-author {
     font-weight: 550;
     font-family: Poppins-Regular !important;
 }
 .comment-title {
-    margin-bottom: 1.2rem !important;
+    margin-bottom: 0.9rem !important;
 }
 .comment-buttons {
     float: right;
+    display: flex;
 }
 .comment-edit {
     margin-right: 0.5rem;
 }
-.comment-box {
+.comment-box .fucking-comment-box {
     margin-bottom: 1.1rem !important;
 }
 .comment-createdAt {
+    font-size: 1.1rem;
     font-weight: 230;
+}
+.comment-line {
+    margin-bottom: 0.7rem;
 }
 @media (min-width: 1200px) {
     .container {

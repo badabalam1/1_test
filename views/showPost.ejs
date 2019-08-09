@@ -49,7 +49,7 @@
                 <div class="card my-4">
                     <h5 class="card-header">Leave a Comment:</h5>
                     <div class="card-body">
-                        <form action="/board/comment/?postID=<%= post._id %>" method="post">
+                        <form action="/board/comment/write/?postID=<%= post._id %>" method="post">
                             <div class="form-group">
                                 <textarea name="comment" class="form-control" rows="3"></textarea>
                             </div>
@@ -61,7 +61,9 @@
                 <% if (comments !== undefined) { %>
                     <% comments.forEach((comment) => { %>
                         <!-- Single Comment -->
-                        <div class="media mb-4 comment-box">
+                        <!-- <% let commentCount = 1; %>
+                        <% let commentNumber = `comment-number-${commentCount}`; %> -->
+                        <div class="media mb-4 comment-box <%= commentNumber %>">
                             <img class="d-flex mr-3 rounded-circle" src="../images/jongjiwoo.png" alt="">
                             <div class="media-body">
                             <h5 class="mt-0">
@@ -71,21 +73,34 @@
                                     </span>
                                 </div>
                             </h5>
-                            <span><%= comment.comment %></span>
-                            <%= comment._id %>
-                            <% let commentEditLink = `/board/comment/update/?postID=${ post._id }` %>
-                            <% let commentDeleteLink = `/board/comment/delete?_method=delete/?CommentID=${comment._id}` %>
+                            <span class="comment-field <%= commentNumber %>"><%= comment.comment %></span>
+                            <div class="for-editing-comment <%= commentNumber %>"></div>
+                                <!---------------- Second Comment ---------------->
+                                <!-- <div class="media mt-4">
+                                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">Commenter Name</h5>
+                                        <span>fuckfuckfuckfuckfuck</span>
+                                    </div>
+                                </div> -->
+                                <!---------------- Second Comment ---------------->
+                            <% let commentEditLink = `/board/comment/update/${ post._id }/`; %>
+                            <% let commentDeleteLink = `/board/comment/delete/${ comment._id }?_method=delete`; %>
+                            
                             <span class="comment-buttons">
                                 <form action="<%= commentDeleteLink %>" method="post">
                                     <a href="#" onclick="confirm('정말로 삭제하시겠습니까?')?this.parentElement.submit():null;">Delete</a>
                                 </form> 
                             </span>
                             <span class="comment-buttons comment-edit">
-                                <a href="<%= commentEditLink %>">Edit</a>
+                                <a href="#">Edit</a>
                             </span>
-                            <div class="comment-line"><hr></div>
+
                             </div>
                         </div>
+                        
+                        <hr class="comment-line">
+                        <% commentCount++; %>
                     <% }); %>
                 <% } %>
                 <!---->
@@ -100,5 +115,6 @@
     </div>
     <% } %>
     <% include ./ejs/scripts.ejs %>
+    <script src="../js/showPost.js"></script>
     </body>
 </html>

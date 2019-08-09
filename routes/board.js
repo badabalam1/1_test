@@ -45,6 +45,7 @@ exports.showPost = (req, res) => {
             res.json(err);
         });
     Comment.find({ connectedPost: req.params.postID })
+        .sort('-createdAt')
         .then((findedComments) => {
             _comments = findedComments;
             console.log(findedComments);
@@ -70,7 +71,7 @@ exports.editPost = (req, res) => {
 };
 
 exports.updatePost = (req, res) => {
-    req.body.createAt = Date.now(); // 2
+    // req.body.createAt = Date.now(); // 2
     Post.findOneAndUpdate({ _id: req.params.postID }, req.body)
         .then((updateResult) => {
             res.redirect(`/board/${req.params.postID}`);
@@ -93,6 +94,7 @@ exports.writeComment = (req, res) => {
     let body = req.body;
     const comment = new Comment({
         Author: req.user.name,
+        AuthorID: req.user._id,
         comment: body.comment,
         connectedPost: postID,
     });
@@ -109,20 +111,34 @@ exports.writeComment = (req, res) => {
         });
 };
 
+exports.updateComment = (req, res) => {
+    let commentID = req.params.cID;
+    let connectedPostID;
+    Post.findOneAndUpdate({ _id: commentID }, req.body)
+        .then((comment) => {
+            connectedPostID = comment.connectedPost;
+            res.redirect(`/board/${connectedPostID}`);
+        }).catch((err) => {
+            res.json(err);
+        });
+};
+
 exports.deleteComment = (req, res) => {
-    // let commentID = req.params.commentID;
-    let commentID = req.query.commentID;
-    console.log('delete Comment inside');
+    let commentID = req.params.cID;
+    let connectedPostID;
+    let decrementCount = -1;
     console.log(commentID);
-    /* Comment.deleteOne({ _id: commentID })
-        .then((result) => {
-            post.findOneAndUpdate({ _id: postID }, { total: { $gte: 1 } }, { $inc: { total: -1 }})
+    Comment.findOneAndDelete({ _id: commentID })
+        .then((deletedComment) => {
+            connectedPostID = deletedComment.connectedPost;
+            Post.findOneAndUpdate({ _id: connectedPostID }, { $inc: { commentCount: decrementCount } })
                 .then((result) => {
                 }).catch((err) => {
                     res.json(err);
                 });
-            res.redirect('/board/${postID}');
+            console.log('Comment deleted Success');
+            res.redirect(`/board/${postID}`);
         }).catch((err) => {
             res.json(err);
-        }); */
+        });
 };
